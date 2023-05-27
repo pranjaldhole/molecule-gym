@@ -9,3 +9,5 @@ numpy
 matplotlib
 seaborn
 imbalanced-learn
+"pycaret[all]"
+mlflow

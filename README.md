@@ -1,6 +1,6 @@
-# Molecule-Net
+# Molecule-Gym
 
-Molecule-Net is a library to run machine learning experiments on drug discovery datasets.
+Molecule-Gym is a library to run machine learning experiments on drug discovery datasets.
 
 ## Contents
 

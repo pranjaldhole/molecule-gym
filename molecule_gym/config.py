@@ -21,7 +21,7 @@ RESULTS_DIR = osp.join(PROJECT_PATH, 'results')
 DATA_LIST = ['BBBP', 'clintox', 'sider', 'tox21', 'toxcast']
 
 def get_data_category(dataname):
-    if dataname in ['BBBP', 'clintox', 'sider', 'tox21', 'toxcast']
+    if dataname in ['BBBP', 'clintox', 'sider', 'tox21', 'toxcast']:
         data_category = 'physiology'
     else:
         raise AssertionError(f'{dataname} data does not have a category assigned!')

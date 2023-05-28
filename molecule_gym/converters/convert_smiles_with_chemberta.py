@@ -17,7 +17,7 @@ from pandas import HDFStore
 import torch
 from transformers import AutoTokenizer, AutoModelForMaskedLM
 
-from molecule_gym.config import DATA_DIR, DATA_LIST, RESULTS_DIR
+from molecule_gym.config import DATA_DIR, DATA_LIST, RESULTS_DIR, get_data_category
 
 import warnings
 warnings.filterwarnings('ignore')
@@ -28,8 +28,9 @@ def main(modelname, dataname):
     and save the fingerprints in HDF5 file.
     '''
     # load data
+    data_category = get_data_category(dataname)
     if dataname in DATA_LIST:
-        df = pd.read_csv(join(DATA_DIR, f'{dataname}.csv'))
+        df = pd.read_csv(join(DATA_DIR, data_category, f'{dataname}.csv'))
     else:
         raise AssertionError(f'{dataname} data does not exist in path!')
 

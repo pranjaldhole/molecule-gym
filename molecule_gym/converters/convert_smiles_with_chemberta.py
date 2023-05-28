@@ -17,7 +17,7 @@ from pandas import HDFStore
 import torch
 from transformers import AutoTokenizer, AutoModelForMaskedLM
 
-from molecule_gym.config import DATA_DIR, DATA_LIST
+from molecule_gym.config import DATA_DIR, DATA_LIST, RESULTS_DIR
 
 import warnings
 warnings.filterwarnings('ignore')
@@ -83,7 +83,7 @@ def main(modelname, dataname):
 
     # Save data to HDF5 file
     print('Saving data to HDF5 file...')
-    file_name = join(DATA_DIR, f'{modelname}_{dataname}.h5')
+    file_name = join(RESULTS_DIR, 'embeddings_data', f'{modelname}_{dataname}.h5')
     hdf = HDFStore(file_name, mode='a')
     hdf.put(f'{dataname}_raw', df, format='table', data_columns=True)
     hdf.close()

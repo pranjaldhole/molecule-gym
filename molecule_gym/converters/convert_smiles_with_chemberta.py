@@ -105,4 +105,4 @@ if __name__ == '__main__':
                         default="chemberta2")
     ARGS = PARSER.parse_args()
 
-    main(ARGS.modelname)
+    main(ARGS.modelname, ARGS.dataname)

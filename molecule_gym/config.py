@@ -14,3 +14,8 @@ import os.path as osp
 PROJECT_PATH = osp.abspath(osp.join(osp.dirname(__file__), '..'))
 DATA_DIR = osp.join(PROJECT_PATH, 'data')
 RESULTS_DIR = osp.join(PROJECT_PATH, 'results')
+
+# ===========================================
+# DATASETS USED IN THIS LIBRARY
+# ===========================================
+DATA_LIST = ['BBBP', 'clintox', 'sider', 'tox21', 'toxcast']

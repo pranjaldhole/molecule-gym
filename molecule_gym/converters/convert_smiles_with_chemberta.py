@@ -17,18 +17,21 @@ from pandas import HDFStore
 import torch
 from transformers import AutoTokenizer, AutoModelForMaskedLM
 
-from molecule_gym.config import DATA_DIR
+from molecule_gym.config import DATA_DIR, DATA_LIST
 
 import warnings
 warnings.filterwarnings('ignore')
 
-def main(modelname):
+def main(modelname, dataname):
     '''
     Runs the main script to generate numeric fingerprint with ChemBERTa-2 from SMILES strings
     and save the fingerprints in HDF5 file.
     '''
     # load data
-    df = pd.read_csv(join(DATA_DIR, 'BBBP.csv'))
+    if dataname in DATA_LIST:
+        df = pd.read_csv(join(DATA_DIR, f'{dataname}.csv'))
+    else:
+        raise AssertionError(f'{dataname} data does not exist in path!')
 
     if modelname == 'chemberta':
         # ChemBERTa
@@ -80,9 +83,9 @@ def main(modelname):
 
     # Save data to HDF5 file
     print('Saving data to HDF5 file...')
-    file_name = join(DATA_DIR, f'{modelname}_blood_brain_barrier_permeability.h5')
+    file_name = join(DATA_DIR, f'{modelname}_{dataname}.h5')
     hdf = HDFStore(file_name, mode='a')
-    hdf.put('bbbp_raw', df, format='table', data_columns=True)
+    hdf.put(f'{dataname}_raw', df, format='table', data_columns=True)
     hdf.close()
 
     f = h5py.File(file_name, 'a')
@@ -92,6 +95,10 @@ def main(modelname):
 
 if __name__ == '__main__':
     PARSER = argparse.ArgumentParser()
+    PARSER.add_argument('-d', '--dataname',
+                        required=True,
+                        choices=DATA_LIST,
+                        help='Choose a model to generate embeddings from SMILES strings')
     PARSER.add_argument('-m', '--modelname',
                         choices=["chemberta", "chemberta2"],
                         help='Choose a model to generate embeddings from SMILES strings',

@@ -8,6 +8,10 @@ Molecule-Gym is a library to run machine learning experiments on drug discovery 
 
 ## Installation
 
+- Initializa the repository to generate all the auxiliary data and results storing with
+```bash
+./init.sh
+```
 - Create virtual environment
 ```bash
 mkdir -p ~/venvs/molecule_gym

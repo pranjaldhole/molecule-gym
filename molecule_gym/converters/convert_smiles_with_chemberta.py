@@ -86,7 +86,7 @@ def main(modelname):
     hdf.close()
 
     f = h5py.File(file_name, 'a')
-    f.create_dataset("chemberta_2_features", data=features)
+    f.create_dataset(f"{modelname}_feature_embeddings", data=features)
     f.close()
     print('done!')
 

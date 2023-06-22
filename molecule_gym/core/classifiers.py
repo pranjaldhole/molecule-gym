@@ -27,7 +27,7 @@ def classify_binary_data(X, y, classifier='svc', sampling=None):
 
     if classifier=='svc':
         print('Using SVC classifier')
-        lr_clf = SVC()
+        lr_clf = SVC(C=3, kernel='poly')
     else:
         raise AssertionError(f'{classifier} is not implemented!')
     lr_clf.fit(X_train, y_train)
